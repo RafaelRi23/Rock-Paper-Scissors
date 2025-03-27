@@ -57,3 +57,11 @@ for (let i = 0; i < 5; i++) {
     // run the function with the choices value
     playRound(humanSelection, computerSelection)
 }
+
+if (humanScore > computerScore) {
+    console.log(`Parabens, voce venceu por ${humanScore} a ${computerScore}`)
+} else if (humanScore < computerScore) {
+    console.log(`Que pena, voce perdeu por ${computerScore} a ${humanScore}`)
+} else {
+    console.log(`Empatou com ${humanScore} pontos`)
+}
