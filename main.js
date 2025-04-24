@@ -2,27 +2,53 @@
 function getComputerChoice () {
     // variable to get a random number
     const random = Math.random();
-    // variable to capture the number
-    let computerChoice;
     // conditional ternary operator to decide which choice will be
-    computerChoice = random < 0.34 ? `Pedra` : random < 0.67 ? `Papel` : `Tesoura`
-    console.log(computerChoice)
-    
-    return computerChoice
+    return random < 0.34 ? `Pedra` : random < 0.67 ? `Papel` : `Tesoura`
 }
 
-// Function to get the human choice
-function getHumanChoice () {
-    // variable to capture the choice with prompt
-    let humanChoice = prompt(`Pedra, Papel ou Tesoura?`)
-    // convert all letters to lower case
-    humanChoice = humanChoice.toLowerCase();
-    // convert the first letter to upper case
-    humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)
-    console.log(humanChoice)
+const container = document.querySelector(`#choices`)
+const div = document.createElement(`div`)
+container.appendChild(div)
+const buttons = document.querySelectorAll(`button`)
 
-    return humanChoice
-}
+buttons.forEach((button) => {
+    button.addEventListener(`click`, event => {
+        const humanChoice = event.target.id
+        const computerChoice = getComputerChoice()
+
+        div.innerHTML = ``;
+
+        const p1 = document.createElement(`p`)  
+        p1.textContent = `Voce escolheu: ${humanChoice}`
+        div.appendChild(p1)
+
+        const p2 = document.createElement(`p`);
+        p2.textContent = `O computador escolheu: ${computerChoice}`;
+        div.appendChild(p2);
+
+        for (let i = 0; i < 5; i++) {
+
+
+        // run the function with the choices value
+        const result = playRound(humanChoice, computerChoice);
+        const p3 = document.createElement(`p`);
+        p3.textContent = result;
+        div.appendChild(p3);
+        }
+        
+    })
+})
+
+
+// // Function to get the human choice and converts to lower case and the first letter to upper case
+// function getHumanChoice () {
+//     let humanChoice = prompt(`Pedra, Papel ou Tesoura?`)
+//     humanChoice = humanChoice.toLowerCase();
+//     humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)
+//     console.log(humanChoice)
+
+//     return humanChoice
+// }
 
 // the error `reference error prompt` occurs in node because it doesn`t have prompt, but in browser this error doesn`t exist
 
@@ -30,38 +56,34 @@ function getHumanChoice () {
 let humanScore = 0
 // variable to count when computer wins
 let computerScore = 0
-
-
    
 // function to play a round
 function playRound (humanChoice, computerChoice) {
 
     if ((humanChoice === `Pedra` && computerChoice === `Tesoura`) || (humanChoice === `Papel` && computerChoice === `Pedra`) || (humanChoice === `Tesoura` && computerChoice === `Papel`)) {
         humanScore++
-        console.log(`Voce venceu! Sua pontuacao eh ` + humanScore + `. A pontuacao do computador eh ` + computerScore)
+        return `Voce venceu! Sua pontuacao eh ` + humanScore + `. A pontuacao do computador eh ` + computerScore
     } else if (humanChoice === computerChoice) {
-        console.log(`Empate. Sua pontuacao eh ` + humanScore + ` e a pontuacao do computador eh ` + computerScore)
+        return `Empate. Sua pontuacao eh ` + humanScore + ` e a pontuacao do computador eh ` + computerScore
     } else {
         computerScore++
-        console.log(`Voce perdeu. Sua pontuacao eh ` + humanScore + `. A pontuacao do computador eh ` + computerScore)
+        return `Voce perdeu. Sua pontuacao eh ` + humanScore + `. A pontuacao do computador eh ` + computerScore
     }
 }
 
 
-for (let i = 0; i < 5; i++) {
-    // variable to initiate the human choice
-    const humanSelection = getHumanChoice()
-    // variable to initiate the computer choice
-    const computerSelection = getComputerChoice()
+// for (let i = 0; i < 5; i++) {
+//     // variable to initiate the computer choice
+//     const computerSelection = getComputerChoice()
 
-    // run the function with the choices value
-    playRound(humanSelection, computerSelection)
-}
+//     // run the function with the choices value
+//     playRound(humanChoice, computerSelection)
+// }
 
-if (humanScore > computerScore) {
-    console.log(`Parabens, voce venceu por ${humanScore} a ${computerScore}`)
-} else if (humanScore < computerScore) {
-    console.log(`Que pena, voce perdeu por ${computerScore} a ${humanScore}`)
-} else {
-    console.log(`Empatou com ${humanScore} pontos`)
-}
+// if (humanScore > computerScore) {
+//     console.log(`Parabens, voce venceu por ${humanScore} a ${computerScore}`)
+// } else if (humanScore < computerScore) {
+//     console.log(`Que pena, voce perdeu por ${computerScore} a ${humanScore}`)
+// } else {
+//     console.log(`Empatou com ${humanScore} pontos`)
+// }
