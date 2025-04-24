@@ -26,31 +26,13 @@ buttons.forEach((button) => {
         p2.textContent = `O computador escolheu: ${computerChoice}`;
         div.appendChild(p2);
 
-        for (let i = 0; i < 5; i++) {
-
-
-        // run the function with the choices value
         const result = playRound(humanChoice, computerChoice);
         const p3 = document.createElement(`p`);
         p3.textContent = result;
         div.appendChild(p3);
-        }
-        
     })
 })
 
-
-// // Function to get the human choice and converts to lower case and the first letter to upper case
-// function getHumanChoice () {
-//     let humanChoice = prompt(`Pedra, Papel ou Tesoura?`)
-//     humanChoice = humanChoice.toLowerCase();
-//     humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)
-//     console.log(humanChoice)
-
-//     return humanChoice
-// }
-
-// the error `reference error prompt` occurs in node because it doesn`t have prompt, but in browser this error doesn`t exist
 
 // variable to count when human wins
 let humanScore = 0
