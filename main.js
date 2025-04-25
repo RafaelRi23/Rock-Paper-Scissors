@@ -55,7 +55,7 @@ function addParagraph(text) {
 
 // ==================== LÓGICA DO EVENTO DE CLIQUE ====================
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button.choice');
 
 buttons.forEach(button => {
     button.addEventListener('click', event => {
